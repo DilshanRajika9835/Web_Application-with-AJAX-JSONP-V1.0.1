@@ -1,0 +1,44 @@
+<!--
+<Customers>
+    <Customer>
+        <id>C001</id>
+        <fname>Dilshan</fname>
+        <lname>Rajika</lname>
+        <addess>No34,Hamugewaththa,Uluvitike,Galle</addess>
+        <city>Galle</city>
+        <country>Sri Lanka</country>
+        <contactno>0987654223</contactno>
+        <zipcode>98076</zipcode>
+    </Customer>
+    <Customer>
+        <id>C002</id>
+        <fname>Shahan</fname>
+        <lname>Rajika</lname>
+        <addess>No34,Hamugewaththa,Uluvitike,Galle</addess>
+        <city>Matara</city>
+        <country>Sri Lanka</country>
+        <contactno>0987654223</contactno>
+        <zipcode>98076</zipcode>
+    </Customer>
+    <Customer>
+        <id>C003</id>
+        <fname>Vimal</fname>
+        <lname>Rajika</lname>
+        <addess>No34,Hamugewaththa,Uluvitike,Galle</addess>
+        <city>Panadhura</city>
+        <country>Sri Lanka</country>
+        <contactno>0987654223</contactno>
+        <zipcode>98076</zipcode>
+    </Customer>
+    <Customer>
+        <id>C004</id>
+        <fname>Kamal</fname>
+        <lname>Rajika</lname>
+        <addess>No34,Hamugewaththa,Uluvitike,Galle</addess>
+        <city>Colombo</city>
+        <country>Sri Lanka</country>
+        <contactno>0987654223</contactno>
+        <zipcode>98076</zipcode>
+    </Customer>
+
+</Customers>-->

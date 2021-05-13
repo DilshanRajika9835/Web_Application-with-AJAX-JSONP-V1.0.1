@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Thogakade">
+    <output-path>$PROJECT_DIR$/out/artifacts/Thogakade</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Web_Application_Project" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql-connector-java-8.0.21" />
+          <element id="library" level="project" name="JSONP" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="Web_Application_Project/web/Web" />
+    </root>
+  </artifact>
+</component>

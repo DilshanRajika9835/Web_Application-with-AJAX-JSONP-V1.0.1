@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Single Page Web Application CRUD Apply With AJAX</title>
+    <link rel="icon" href="assert/img/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assert/css/bootstrap.css">
+    <link rel="stylesheet" href="assert/css/style.css">
+    <link rel="stylesheet" href="assert/css/normalize.css">
+
+    <style>
+        .form-control:disabled, .form-control[readonly] {
+            opacity: 1;
+            background-color: #66339914;
+        }
+        @media (min-width: 320px) and (max-width: 1082px) {
+            .table > :not(caption) > * > * {
+                padding: 0;
+                font-size: 12px;
+            }
+        }
+        @media (min-width: 320px) and (max-width: 530px) {
+            .table > :not(caption) > * > * {
+                padding: 0;
+                font-size: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body style="overflow-x: hidden" class="A4 portrait">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark  position-fixed  w-100 " style="z-index: 3 ;top: 0">
+    <div class="container-fluid " >
+        <a id="navhome" class="navbar-brand" href=""><img src="assert/img/logo.png"alt="image" style="width: 59px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" id="navCustomer">
+                    <a class="nav-link active" aria-current="page">CUSTOMER</a>
+                </li>
+                <li class="nav-item" id="navOrder">
+                    <a class="nav-link active" aria-current="page" >ORDER</a>
+                </li>
+                <li class="nav-item" id="navItem">
+                    <a class="nav-link active" >ITEM</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active"  id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Other
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="navabout">
+                        <li><a class="dropdown-item" >About</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!------------------------------------------------------------------------------------------------->
+<section style="position: relative;margin-top: 100px" id="dashboard">
+    <div class="container-fluid mt-5 " id="menuForm">
+        <div class="row justify-content-center  ">
+            <img src="assert/img/CustomerForm.png" alt="image" class="col-12 col-sm-12 col-xl-6 col-md-12 col-xxl-6  ">
+            <div class="border col-12 col-sm-12 col-xl-6 col-md-12 col-xxl-6 " >
+                <form class="row g-3" id="CustomerForm">
+                    <div class="col-md-6">
+                        <label for="txtcustid" class="form-label"  style="color: black;font-weight:bold ">Customer ID</label>
+                        <input  name="id" type="text" class="form-control" id="txtcustid"
+                                style="color: red;font-weight:bold "   placeholder="CUS0001" >
+                        <span style="font-size: 12px;color: red" id="lblcustID">your input format is wrong</span>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="txtcustfirstname" class="form-label" style="color: black;font-weight:bold" >First
+                            Name</label>
+                        <input name="fname" type="text" class="form-control" id="txtcustfirstname"
+                               placeholder="Dilshan Rajika"
+                               required>
+                        <span style="font-size: 12px;color: red" id="lblfname">your input format is wrong</span>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="txtcustlastname" class="form-label" style="color: black;font-weight:bold">Last
+                            Name</label>
+                        <input name="lname" type="text" class="form-control" id="txtcustlastname"
+                               placeholder="Withanachchi" required>
+                        <span style="font-size: 12px;color: red" id="lbllname">your input format is wrong</span>
+                    </div>
+                    <div class="col-12">
+                        <label for="txtaddress" class="form-label" style="color: black;font-weight:bold">Address</label>
+                        <input name="address" type="text" class="form-control" id="txtaddress"
+                               placeholder="1234 Main St"
+                               required>
+                        <span style="font-size: 12px;color: red" id="lbladdress">your input format is wrong</span>
+                    </div>
+                    <div class="col-6">
+                        <label for="txtphoneno" class="form-label" style="color: black;font-weight:bold">Contact No</label>
+                        <input name="contactno" type="number" class="form-control" id="txtphoneno"
+                               placeholder="+94 766654345"
+                               required>
+                        <span style="font-size: 12px;color: red" id="lblphoneno">your input format is wrong</span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="txtcountry" class="form-label" style="color: black;font-weight:bold">Country</label>
+                        <select  name="country" id="txtcountry" class="form-select" required type="text">
+                            <option selected disabled value="">Choose..</option>
+                            <option>Sri Lanka</option>
+                            <option>India</option>
+                            <option>America</option>
+                            <option>London</option>
+                            <option>Japan</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 ">
+                        <label for="txtcity" class="form-label" style="color: black;font-weight:bold">City</label>
+                        <select name="city" id="txtcity" class="form-select" type="country" required>
+                            <option selected disabled value="">Choose..</option>
+                            <option>Mathara</option>
+                            <option>Galle</option>
+                            <option>Colombo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="txtzipcode" class="form-label" style="color: black;font-weight:bold">Zip Code</label>
+                        <select name="zipcode" id="txtzipcode" class="form-select" required type="zipcode">
+                            <option selected disabled value="">Choose..</option>
+                            <option>3456</option>
+                            <option>4566</option>
+                            <option>4569</option>
+                        </select>
+                    </div>
+                    <section class="btn-group p-2 ">
+                        <div class="col-2 btn-group w-20 m-1">
+                            <button  type="button" class="btn btn-primary">Clear</button>
+                        </div>
+                        <div class="col-2 btn-group w-20 m-1">
+                            <button  type="button" class="btn btn-danger" onclick="deleteCustomer()">Delete</button>
+                        </div>
+                        <div class="col-2 btn-group w-20 m-1">
+                            <button  type="button" class="btn btn-warning" onclick="UpdataCustomer()">Update</button>
+                        </div>
+                        <div class="col-2 btn-group w-20 m-1 ">
+                            <button type="button" class="btn btn-success" id="btnSaveCustomer" onclick="SaveCustomer()"
+                            >Save
+                            </button>
+                        </div>
+
+                    </section>
+
+
+                </form>
+
+            </div>
+            <section class="container-fluid">
+                <div class="row">
+                    <div class="border  ">
+                        <table class="table caption-top table-hover border" id="CustomerTable" >
+                            <caption>List of Customers</caption>
+                            <thead class="bg-warning table-bordered">
+                            <tr>
+                                <th scope="col" >No</th>
+                                <th scope="col">Customer ID</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Address </th>
+                                <th scope="col">City</th>
+                                <th scope="col">Country</th>
+                                <th scope="col">Contact No</th>
+                                <th scope="col">Zip Code</th>
+
+                            </tr>
+                            </thead>
+                            <tbody id="cust_tblbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<!------------------------------------------------------------------------------------------------->
+<script src="assert/js/bootstrap.js"></script>
+<script src="assert/jquery/jquery-3.6.0.min.js"></script>
+<script src="controller/CustomerController.js"></script>
+
+<script>
+    loadAllCustomer();
+    $('#lblcustID').css('display','none');
+    $('#lblfname').css('display','none');
+    $('#lbllname').css('display','none');
+    $('#lbladdress').css('display','none');
+    $('#lblphoneno').css('display','none');
+    $("#ordCustID,#ordItemCode").change(function () {
+        let x = document.getElementById("ordCustID").selectedIndex;
+        let y = document.getElementById("ordCustID").options;
+        let customer = y[x].text;
+        $("#ordCustID > option").val(customer);
+
+        let a = document.getElementById("ordItemCode").selectedIndex;
+        let b = document.getElementById("ordItemCode").options;
+        let item = b[a].text;
+        $("#ordItemCode > option").val(item);
+
+
+    });
+/*
+JSON.parse('{"id":"C001"}');//return to java script Object {id:"C001"}
+    var ob={
+        id:"C001",
+        name:"Dilshan"
+    }
+JSON.stringify(ob);//return valid json object "{\"id\":\"C001\",\"name\":\"Dilshan\"}"
+    var ob=[
+        {id:"C001",
+            name:"Dilshan"},{
+
+            id:"C002",
+            name:"Kamal"
+        }
+    ]
+    JSON.stringify(ob);
+  "[{\"id\":\"C001\",\"name\":\"Dilshan\"},{\"id\":\"C002\",\"name\":\"Kamal\"}]"
+*/
+
+    function UpdataCustomer() {
+      /*  let custData = $("#CustomerForm").serializeArray();*/
+        let custid=$('#txtcustid').val();
+        let fname=$('#txtcustfirstname').val();
+        let lname=$('#txtcustlastname').val();
+        let address=$('#txtaddress').val();
+        let phoneno=$('#txtphoneno').val();
+        let country=$('#txtcountry').val();
+        let city=$('#txtcity').val();
+        let zipcode=$('#txtzipcode').val();
+        console.log(typeof custData);
+        $.ajax({
+            url: "Customer",
+            method: "put",
+            async:true,
+            contentType:"application/json",
+            /*     data:JSON.stringify({custData}),*/
+            data: JSON.stringify({
+                id:custid,
+                fname:fname,
+                lname:lname,
+                address:address,
+                contactno:phoneno,
+                country:country,
+                city:city,
+                zipcode:zipcode
+
+
+            }),
+
+
+            success:function () {
+               loadAllCustomer();
+            }
+
+        })
+    }
+    function deleteCustomer() {
+        /*  let custData = $("#CustomerForm").serializeArray();*/
+
+        let custid=$('#txtcustid').val();
+        $.ajax({
+            url: "Customer?id="+custid,//query String
+           // url: "Customer",//url type
+            method: "delete",
+            async:true,
+            contentType:"application/json",
+            /*     data:JSON.stringify({custData}),*/
+            data: JSON.stringify({
+                id:custid,
+            }),
+
+
+            success:function () {
+                loadAllCustomer();
+            }
+
+        })
+    }
+    //old usage
+/*    var htpp;
+    if(window.ActiveX){
+        htpp=new ActiveX();
+    }else if(window.XMLHttpRequest){
+        htpp=new XMLHttpRequest();
+
+    }*/
+    /*function SaveCustomer() {
+        let xml=new XMLHttpRequest();
+        xml.open("GET","controller/db.txt");
+        xml.send();
+    }*/
+ /*   function SaveCustomer(){
+        let custid=$('#txtcustid').val();
+        let fname=$('#txtcustfirstname').val();
+        let lname=$('#txtcustlastname').val();
+        let address=$('#txtaddress').val();
+        let phoneno=$('#txtphoneno').val();
+        let country=$('#txtcountry').val();
+        let city=$('#txtcity').val();
+        let zipcode=$('#txtzipcode').val();
+        $.ajax({
+            url: "Customer",
+            method: "post",
+            async:true,
+            data:{
+                id:custid,
+                fname:fname,
+                lname:lname,
+                address:address,
+                contactno:phoneno,
+                country:country,
+                city:city,
+                zipcode:zipcode
+
+            }
+
+            /!*  dataType:"json",*!/ // content type eka nodanna awasthawaka
+        /!*    success:function (data,textState,xhr) {
+                let a=1;
+                /!*  let ob = JSON.parse(data);*!/
+                for (const i of data) {
+                    row=`<tr> <td>${a++}</td><td>${i.id}</td><td>${i.fname}</td><td>${i.lname}</td><td>${i.address}</td><td>${i.city}</td><td>${i.country}</td><td>${i.contactno}</td><td>${i.zipcode}</td></tr>`;
+                    $('#cust_tblbody').append(row);
+                }
+            }*!/
+
+        })
+        loadAllCustomer();
+    }*/
+    function SaveCustomer() {
+            let custData = $("#CustomerForm").serialize();
+            $.ajax({
+                url: "Customer",
+                method: "post",
+                async:true,
+                data:custData,
+              /*  contentType:"application/z-www-form-urlencoded",*/
+                success:function () {
+                    loadAllCustomer();
+                }
+
+            });
+
+    }
+    function loadAllCustomer() {
+        $('#cust_tblbody').empty();
+        $.ajax({
+            url: "Customer",
+            method: "GET",
+            async:true,
+          /*  dataType:"json",*/ // content type eka nodanna awasthawaka
+            success:function (data,textState,xhr) {
+                let a=1;
+             /*  let ob = JSON.parse(data);*/
+                for (const i of data) {
+                    row=`<tr> <td>${a++}</td><td>${i.id}</td><td>${i.fname}</td><td>${i.lname}</td><td>${i.address}</td><td>${i.city}</td><td>${i.country}</td><td>${i.contactno}</td><td>${i.zipcode}</td></tr>`;
+                    $('#cust_tblbody').append(row);
+                }
+            }
+
+        });
+
+    }
+   /* function loadAllCustomer(){
+        var configOb={
+            method:"GET",
+            url:"controller/dbArray.json",
+
+            success:function (response) {
+                $('#cust_tblbody').empty();
+
+                let a=1;
+                for (var i of response) {
+                    row=`<tr> <td>${a++}</td><td>${i.id}</td><td>${i.fname}</td><td>${i.lname}</td><td>${i.address}</td><td>${i.city}</td><td>${i.country}</td><td>${i.contactno}</td><td>${i.zipcode}</td></tr>`;
+                    $('#cust_tblbody').append(row);
+                }
+
+        /!*        $('#cust_tblbody').empty();
+                    let a=1;
+
+                    row=`<tr> <td>${a++}</td><td>${response.id}</td><td>${response.fname}</td><td>${response.lname}</td><td>${response.address}</td><td>${response.city}</td><td>${response.country}</td><td>${response.contactno}</td><td>${response.zipcode}</td></tr>`;
+                    $('#cust_tblbody').append(row);*!/
+
+
+        /!*        $('#cust_tblbody').empty();
+
+                let children = $(response).children("Customers").children();
+                for (let i = 0; i <children.length ; i++) {
+                    let id= $(children[i]).find("id").text();
+                    let fname= $(children[i]).find("fname").text();
+                    let lname= $(children[i]).find("lname").text();
+                    let address= $(children[i]).find("address").text();
+                    let city= $(children[i]).find("city").text();
+                    let country= $(children[i]).find("country").text();
+                    let contactno= $(children[i]).find("contactno").text();
+                    let zipcode= $(children[i]).find("zipcode").text();
+                    let salary= $(children[i]).find("salary").text();
+                    let
+                        row=`<tr> <td>${i+1}</td><td>${id}</td><td>${fname}</td><td>${lname}</td><td>${address}</td><td>${city}</td><td>${country}</td><td>${contactno}</td><td>${zipcode}</td><td>${salary}</td></tr>`;
+                    $('#cust_tblbody').append(row);
+
+                }*!/
+
+            }
+        }
+        $.ajax(configOb)
+    }
+        let saveCust = document.getElementById('btnSaveCustomer');
+            saveCust.addEventListener("click",function () {
+           /!*     let xml=new XMLHttpRequest();
+                console.log("1 "+xml.readyState);
+                xml.open("GET","controller/db.txt",true);
+                console.log("2 "+xml.readyState);
+                console.log("3 "+xml.readyState);
+
+                console.log("4 "+xml.readyState);
+                xml.onreadystatechange=function () {//add event listener ready to response
+                    if (xml.readyState == 4) {
+                        console.log(xml.response);
+                    }
+                }
+
+                xml.send();*!/
+
+ /!*================================================================================================Option 2*!/
+                /!*
+
+                var configOb={
+                    method:"GET",
+                    url:"controller/db.xml",
+
+                  success:function (response) {
+                      $('#cust_tblbody').empty();
+                        let children = $(response).children("Customers").children();
+                        for (let i = 0; i <children.length ; i++) {
+                           let id= $(children[i]).find("id").text();
+                           let fname= $(children[i]).find("fname").text();
+                           let lname= $(children[i]).find("lname").text();
+                           let address= $(children[i]).find("address").text();
+                           let city= $(children[i]).find("city").text();
+                           let country= $(children[i]).find("country").text();
+                           let contactno= $(children[i]).find("contactno").text();
+                           let zipcode= $(children[i]).find("zipcode").text();
+                           let salary= $(children[i]).find("salary").text();
+                            let
+                                row=`<tr> <td>${i+1}</td><td>${id}</td><td>${fname}</td><td>${lname}</td><td>${address}</td><td>${city}</td><td>${country}</td><td>${contactno}</td><td>${zipcode}</td><td>${salary}</td></tr>`;
+                                        $('#cust_tblbody').append(row);
+
+                        }
+
+                    }
+                }
+                $.ajax(configOb)*!/
+
+            });*/
+
+
+
+</script>
+</body>
+</html>
+
